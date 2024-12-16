@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Go | 中英雙語 | Bilingual</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; }
+        nav { display: flex; justify-content: center; background-color: #333; }
+        nav button { background-color: #333; color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        nav button:hover { background-color: #575757; }
+        nav button.active { background-color: #4CAF50; }
+        .container { padding: 20px; display: none; }
+        .container.active { display: block; }
+        footer { text-align: center; background-color: #f1f1f1; padding: 10px; position: fixed; bottom: 0; width: 100%; }
+        form { max-width: 600px; margin: 0 auto; }
+        form input, form textarea, form select, form button {
+            width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;
+        }
+        button.submit { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button.submit:hover { background-color: #45a049; }
+        button.submit:focus { outline: 2px solid #4CAF50; }
+        .request-list { max-width: 600px; margin: 20px auto; }
+        .request-item { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            const buttons = document.querySelectorAll('nav button');
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`button[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        // Save request data locally and update the list
+        function submitRequest(event) {
+            event.preventDefault();
+
+            const buyerName = document.getElementById('buyer-name').value;
+            const buyerCountry = document.getElementById('buyer-country').value;
+            const shoppingCountry = document.getElementById('shopping-country').value;
+            const itemName = document.getElementById('item-name').value;
+            const description = document.getElementById('description').value;
+            const quantity = document.getElementById('quantity').value;
+            const contact = document.getElementById('contact').value;
+
+            const newRequest = {
+                buyerName,
+                buyerCountry,
+                shoppingCountry,
+                itemName,
+                description,
+                quantity,
+                contact,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            // Save to local storage
+            const requests = JSON.parse(localStorage.getItem('requests')) || [];
+            requests.push(newRequest);
+            localStorage.setItem('requests', JSON.stringify(requests));
+
+            alert('需求已成功提交！ | Request submitted successfully!');
+            document.getElementById('request-form').reset();
+            showSection('view-requests');
+            displayRequests();
+        }
+
+        // Display saved requests
+        function displayRequests() {
+            const requestList = document.getElementById('request-list');
+            requestList.innerHTML = '';
+            const requests = JSON.parse(localStorage.getItem('requests')) || [];
+
+            if (requests.length === 0) {
+                requestList.innerHTML = '<p>沒有可用的需求。<br>No requests available.</p>';
+                return;
+            }
+
+            requests.forEach((request, index) => {
+                const requestItem = document.createElement('div');
+                requestItem.className = 'request-item';
+                requestItem.innerHTML = `
+                    <p><strong>買家姓名 | Buyer Name:</strong> ${request.buyerName}</p>
+                    <p><strong>買家所在國家 | Buyer Country:</strong> ${request.buyerCountry}</p>
+                    <p><strong>購物國家 | Shopping Country:</strong> ${request.shoppingCountry}</p>
+                    <p><strong>商品名稱 | Item Name:</strong> ${request.itemName}</p>
+                    <p><strong>描述 | Description:</strong> ${request.description}</p>
+                    <p><strong>數量 | Quantity:</strong> ${request.quantity}</p>
+                    <p><strong>聯絡方式 | Contact:</strong> ${request.contact}</p>
+                    <p><strong>日期 | Date:</strong> ${request.date}</p>
+                `;
+                requestList.appendChild(requestItem);
+            });
+        }
+
+        window.onload = () => {
+            showSection('home');
+            displayRequests();
+        };
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Global Go | 中英雙語 | Bilingual</h1>
+    <p>一個簡單的跨境購物需求配對平台<br>A simple platform to post and view shopping requests</p>
+</header>
+
+<nav>
+    <button data-section="home" onclick="showSection('home')">首頁 | Home</button>
+    <button data-section="post-request" onclick="showSection('post-request')">發布需求 | Post Request</button>
+    <button data-section="view-requests" onclick="showSection('view-requests')">查看需求 | View Requests</button>
+</nav>
+
+<div id="home" class="container">
+    <h2>歡迎來到 Global Go | Welcome to Global Go</h2>
+    <p>發布您的購物需求，或瀏覽他人提交的需求。<br>Post your shopping requests or view requests submitted by others.</p>
+    <p><strong>所有需求將在30天後自動過期。<br>All requests will expire after 30 days.</strong></p>
+</div>
+
+<div id="post-request" class="container">
+    <h2>發布購物需求 | Post Your Shopping Request</h2>
+    <form id="request-form" onsubmit="submitRequest(event)">
+        <label for="buyer-name">買家姓名 | Buyer Name</label>
+        <input type="text" id="buyer-name" name="buyer-name" required>
+
+        <label for="buyer-country">買家所在國家 | Buyer Country</label>
+        <select id="buyer-country" name="buyer-country" required>
+            <option value="">請選擇國家 | Select Country</option>
+            <option value="Japan">日本 | Japan</option>
+            <option value="Korea">韓國 | Korea</option>
+            <option value="USA">美國 | USA</option>
+            <option value="UK">英國 | UK</option>
+            <option value="China">中國 | China</option>
+            <option value="Australia">澳洲 | Australia</option>
+            <option value="Canada">加拿大 | Canada</option>
+            <option value="Hong Kong">香港 | Hong Kong</option>
+            <option value="Other">其他 | Other</option>
+        </select>
+
+        <label for="shopping-country">購物國家 | Shopping Country</label>
+        <select id="shopping-country" name="shopping-country" required>
+            <option value="">請選擇國家 | Select Country</option>
+            <option value="Japan">日本 | Japan</option>
+            <option value="Korea">韓國 | Korea</option>
+            <option value="USA">美國 | USA</option>
+            <option value="UK">英國 | UK</option>
+            <option value="China">中國 | China</option>
+            <option value="Australia">澳洲 | Australia</option>
+            <option value="Canada">加拿大 | Canada</option>
+            <option value="Hong Kong">香港 | Hong Kong</option>
+            <option value="Other">其他 | Other</option>
+        </select>
+
+        <label for="item-name">商品名稱 | Item Name</label>
+        <input type="text" id="item-name" name="item-name" required>
+
+        <label for="description">描述 | Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <label for="quantity">數量 | Quantity</label>
+        <input type="number" id="quantity" name="quantity" required>
+
+        <label for="contact">聯絡方式 | Contact</label>
+        <input type="text" id="contact" name="contact" required>
+
+        <button type="submit" class="submit">提交需求 | Submit Request</button>
+    </form>
+</div>
+
+<div id="view-requests" class="container">
+    <h2>查看需求 | View Requests</h2>
+    <div id="request-list" class="request-list"></div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Global Go. 保留所有權利 | All rights reserved.</p>
+</footer>
+
+</body>
+</html>
