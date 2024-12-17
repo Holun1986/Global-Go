@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Go | View Requests</title>
+    <title>Global Go | Google Sheets Integrated</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
         header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; }
@@ -14,11 +14,8 @@
         nav button.active { background-color: #4CAF50; }
         .container { padding: 20px; display: none; }
         .container.active { display: block; }
-        .request-card { border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin: 10px 0; }
-        .request-card h3 { margin: 0; }
-        .request-card p { margin: 5px 0; }
+        iframe { border: none; width: 100%; height: 800px; margin: 20px 0; }
         footer { text-align: center; background-color: #f1f1f1; padding: 10px; position: fixed; bottom: 0; width: 100%; }
-        select { margin-bottom: 20px; padding: 8px; font-size: 1rem; }
     </style>
     <script>
         function showSection(sectionId) {
@@ -28,19 +25,6 @@
             buttons.forEach(button => button.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
             document.querySelector(`button[data-section="${sectionId}"]`).classList.add('active');
-        }
-
-        function filterRequests() {
-            const filterValue = document.getElementById('countryFilter').value;
-            const cards = document.querySelectorAll('.request-card');
-            cards.forEach(card => {
-                const country = card.dataset.country;
-                if (filterValue === 'All' || country === filterValue) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
         }
 
         window.onload = () => showSection('home');
@@ -75,32 +59,9 @@
 
 <div id="view-requests" class="container">
     <h2>View Submitted Requests | 查看已提交的需求</h2>
-    <label for="countryFilter">Filter by Shopping Country | 按購物國家篩選：</label>
-    <select id="countryFilter" onchange="filterRequests()">
-        <option value="All">All Countries | 所有國家</option>
-        <option value="Japan">Japan | 日本</option>
-        <option value="USA">USA | 美國</option>
-        <option value="Australia">Australia | 澳洲</option>
-        <option value="China">China | 中國</option>
-    </select>
-
-    <div class="request-card" data-country="Japan">
-        <h3>商品：日本綠茶 KitKat | Item: Japanese Green Tea KitKat</h3>
-        <p>買家姓名：Alice Wong | Buyer Name: Alice Wong</p>
-        <p>買家所在國家：香港 | Buyer Location: Hong Kong</p>
-        <p>需要購買的國家：日本 | Shopping Country: Japan</p>
-        <p>描述：需要新鮮的 KitKat，特別是綠茶味。<br>Description: Looking for fresh KitKat, especially green tea flavor.</p>
-        <p>下單日期：2024-12-14 | Order Date: 2024-12-14</p>
-    </div>
-
-    <div class="request-card" data-country="USA">
-        <h3>商品：iPhone 15 | Item: iPhone 15</h3>
-        <p>買家姓名：John Doe | Buyer Name: John Doe</p>
-        <p>買家所在國家：中國 | Buyer Location: China</p>
-        <p>需要購買的國家：美國 | Shopping Country: USA</p>
-        <p>描述：需要 iPhone 15 最新型號。<br>Description: Need the latest iPhone 15 model.</p>
-        <p>下單日期：2024-12-10 | Order Date: 2024-12-10</p>
-    </div>
+    <p>Below is the list of all submitted shopping requests.<br> 以下是已提交的購物需求清單：</p>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTtIHrFakeGoogleSheetExample/pubhtml?widget=true&amp;headers=false" 
+    width="100%" height="800" frameborder="0">Loading… | 加載中...</iframe>
 </div>
 
 <footer>
