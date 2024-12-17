@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Go | Form Fixed Large Height</title>
+    <title>Global Go | Bilingual Version</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
         header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; }
@@ -16,6 +16,7 @@
         .container.active { display: block; }
         iframe { border: none; width: 100%; height: 1200px; margin: 20px 0; }
         footer { text-align: center; background-color: #f1f1f1; padding: 10px; position: fixed; bottom: 0; width: 100%; }
+        h2, p { margin: 10px 0; }
     </style>
     <script>
         function showSection(sectionId) {
@@ -33,37 +34,39 @@
 <body>
 
 <header>
-    <h1>Global Go | Google Form Integrated</h1>
-    <p>A simple platform to manage shopping requests globally</p>
-    <p>All requests will auto-expire after <strong>30 days</strong>.</p>
+    <h1>Global Go | 跨境購物平台</h1>
+    <p>Manage your shopping requests globally | 管理您的跨境購物需求</p>
+    <p>All requests will auto-expire after <strong>30 days</strong> | 所有需求將於提交後<strong>30天自動取消</strong></p>
 </header>
 
 <nav>
-    <button data-section="home" onclick="showSection('home')">Home</button>
-    <button data-section="post-request" onclick="showSection('post-request')">Post Request</button>
-    <button data-section="view-requests" onclick="showSection('view-requests')">View Requests</button>
+    <button data-section="home" onclick="showSection('home')">Home | 首頁</button>
+    <button data-section="post-request" onclick="showSection('post-request')">Post Request | 發布需求</button>
+    <button data-section="view-requests" onclick="showSection('view-requests')">View Requests | 查看需求</button>
 </nav>
 
-<div id="home" class="container">
-    <h2>Welcome to Global Go</h2>
-    <p>Post your shopping requests using the embedded Google Form, or view the list of existing requests.</p>
+<div id="home" class="container active">
+    <h2>Welcome to Global Go | 歡迎來到 Global Go</h2>
+    <p>You can post your shopping requests or view requests submitted by others.<br>
+       您可以發布您的購物需求或查看其他人提交的需求。</p>
 </div>
 
 <div id="post-request" class="container">
-    <h2>Post Your Shopping Request</h2>
-    <p>Fill out the form below to submit your shopping request.</p>
-    <!-- Fixed Google Form Embed Code -->
+    <h2>Post Your Shopping Request | 發布您的購物需求</h2>
+    <p>Fill out the form below to submit your shopping request.<br> 請填寫以下表單來提交您的購物需求。</p>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxwf2fpjnpQZEoiKwwmgRNJWgeiWq79aogwMLwo0pJtTP3sg/viewform?embedded=true" 
-    width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">Loading… | 加載中...</iframe>
 </div>
 
 <div id="view-requests" class="container">
-    <h2>View Submitted Requests</h2>
-    <p>Access the full list of shopping requests: <a href="https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit" target="_blank">View Requests Spreadsheet</a></p>
+    <h2>View Submitted Requests | 查看已提交的需求</h2>
+    <p>Click the link below to view the list of submitted requests.<br> 點擊下方鏈接查看已提交的購物需求清單。</p>
+    <a href="https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit" target="_blank">
+    View Requests | 查看需求</a>
 </div>
 
 <footer>
-    <p>&copy; 2024 Global Go. All rights reserved.</p>
+    <p>&copy; 2024 Global Go. All Rights Reserved. | 保留所有權利。</p>
 </footer>
 
 </body>
