@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Go | Google Form Integrated</title>
+    <title>Global Go | 中英文 Bilingual</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
         header { background-color: #4CAF50; color: white; padding: 20px; text-align: center; }
@@ -14,8 +14,10 @@
         nav button.active { background-color: #4CAF50; }
         .container { padding: 20px; display: none; }
         .container.active { display: block; }
-        iframe { border: none; width: 100%; height: 1239px; margin: 20px 0; }
+        iframe { border: none; width: 100%; height: 600px; margin: 20px 0; }
         footer { text-align: center; background-color: #f1f1f1; padding: 10px; position: fixed; bottom: 0; width: 100%; }
+        label, select, input, textarea { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+        select { height: 40px; }
     </style>
     <script>
         function showSection(sectionId) {
@@ -33,38 +35,77 @@
 <body>
 
 <header>
-    <h1>Global Go | Google Form Integrated</h1>
-    <p>A simple platform to manage shopping requests globally</p>
+    <h1>Global Go | 中英文 Bilingual</h1>
+    <p>跨境購物需求平台 | Cross-border Shopping Request Platform</p>
+    <p>所有需求將在提交後 <strong>30 天自動取消</strong> | All requests will auto-expire after 30 days.</p>
 </header>
 
 <nav>
-    <button data-section="home" onclick="showSection('home')">Home</button>
-    <button data-section="post-request" onclick="showSection('post-request')">Post Request</button>
-    <button data-section="view-requests" onclick="showSection('view-requests')">View Requests</button>
+    <button data-section="home" onclick="showSection('home')">首頁 | Home</button>
+    <button data-section="post-request" onclick="showSection('post-request')">發布需求 | Post Request</button>
+    <button data-section="view-requests" onclick="showSection('view-requests')">查看需求 | View Requests</button>
 </nav>
 
 <div id="home" class="container">
-    <h2>Welcome to Global Go</h2>
-    <p>Post your shopping requests using the embedded Google Form, or view the list of existing requests.</p>
+    <h2>歡迎來到 Global Go | Welcome to Global Go</h2>
+    <p>您可以發布您的購物需求，或查看其他人的需求。<br>
+    You can post your shopping requests or view those submitted by others.</p>
 </div>
 
 <div id="post-request" class="container">
-    <h2>Post Your Shopping Request</h2>
-    <p>Fill out the form below to submit your shopping request.</p>
-    <!-- Embedded Google Form -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxwf2fpjnpQZEoiKwwmgRNJWgeiWq79aogwMLwo0pJtTP3sg/viewform?embedded=true" 
-    width="640" height="1239" frameborder="0" marginheight="0" marginwidth="0">
-    Loading…
-    </iframe>
+    <h2>發布購物需求 | Post Your Shopping Request</h2>
+    <form>
+        <label for="buyer-name">買家姓名 | Buyer Name</label>
+        <input type="text" id="buyer-name" name="buyer-name" required>
+
+        <label for="buyer-country">買家所在國家 | Buyer Country</label>
+        <select id="buyer-country" name="buyer-country" required>
+            <option value="">請選擇國家 | Select Country</option>
+            <option value="United States">美國 | United States</option>
+            <option value="Canada">加拿大 | Canada</option>
+            <option value="Australia">澳洲 | Australia</option>
+            <option value="China">中國 | China</option>
+            <option value="Hong Kong">香港 | Hong Kong</option>
+            <option value="United Kingdom">英國 | United Kingdom</option>
+            <option value="Other">其他 | Other</option>
+        </select>
+
+        <label for="shopping-country">需求購物國家 | Shopping Country</label>
+        <select id="shopping-country" name="shopping-country" required>
+            <option value="">請選擇國家 | Select Country</option>
+            <option value="United States">美國 | United States</option>
+            <option value="Canada">加拿大 | Canada</option>
+            <option value="Australia">澳洲 | Australia</option>
+            <option value="China">中國 | China</option>
+            <option value="Hong Kong">香港 | Hong Kong</option>
+            <option value="United Kingdom">英國 | United Kingdom</option>
+            <option value="Other">其他 | Other</option>
+        </select>
+
+        <label for="item-name">商品名稱 | Item Name</label>
+        <input type="text" id="item-name" name="item-name" required>
+
+        <label for="description">商品描述 | Item Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <label for="quantity">數量 | Quantity</label>
+        <input type="number" id="quantity" name="quantity" required>
+
+        <label for="contact">聯絡方式 | Contact Information</label>
+        <input type="text" id="contact" name="contact" required>
+
+        <button type="submit">提交需求 | Submit Request</button>
+    </form>
 </div>
 
 <div id="view-requests" class="container">
-    <h2>View Submitted Requests</h2>
-    <p>Access the full list of shopping requests: <a href="https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit" target="_blank">View Requests Spreadsheet</a></p>
+    <h2>查看需求列表 | View Submitted Requests</h2>
+    <p>需求列表按國家顯示，方便您快速查看。<br>
+    The request list is organized by country for easy browsing.</p>
 </div>
 
 <footer>
-    <p>&copy; 2024 Global Go. All rights reserved.</p>
+    <p>&copy; 2024 Global Go. 保留所有權利 | All rights reserved.</p>
 </footer>
 
 </body>
