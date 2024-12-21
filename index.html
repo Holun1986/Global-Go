@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Go | 跨境購物平台</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+        nav button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        nav button:hover {
+            background-color: #575757;
+        }
+        nav button.active {
+            background-color: #4CAF50;
+        }
+        .container {
+            padding: 20px;
+            display: none;
+        }
+        .container.active {
+            display: block;
+        }
+        footer {
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.container');
+            const buttons = document.querySelectorAll('nav button');
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`button[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        window.onload = () => showSection('home');
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Global Go | 跨境購物平台</h1>
+    <p>Manage your shopping requests globally | 管理您的跨境購物需求</p>
+    <p>All requests will auto-expire after 30 days | 所有需求將於提交後30天自動取消</p>
+</header>
+
+<nav>
+    <button data-section="home" onclick="showSection('home')">Home | 首頁</button>
+    <button data-section="post-request" onclick="showSection('post-request')">Post Request | 發布需求</button>
+    <button data-section="view-requests" onclick="showSection('view-requests')">View Requests | 查看需求</button>
+    <button data-section="leave-message" onclick="showSection('leave-message')">Leave a Message | 代購留言</button>
+</nav>
+
+<div id="home" class="container active">
+    <h2>Welcome to Global Go | 歡迎來到 Global Go</h2>
+    <p>You can post your shopping requests or view requests submitted by others.<br>
+       您可以發布您的購物需求或查看其他人提交的需求。</p>
+</div>
+
+<div id="post-request" class="container">
+    <h2>Post Your Shopping Request | 發布您的購物需求</h2>
+    <p>Fill out the form below to submit your shopping request.<br> 請填寫以下表單來提交您的購物需求。</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxwf2fpjnpQZEoiKwwmgRNJWgeiWq79aogwMLwo0pJtTP3sg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+<div id="view-requests" class="container">
+    <h2>View Submitted Requests | 查看已提交的需求</h2>
+    <p>The submitted requests will appear below:<br> 已提交的購物需求將顯示在下方。</p>
+    <div id="requests-container">
+        <p>Feature for viewing requests will be added dynamically here.</p>
+    </div>
+</div>
+
+<div id="leave-message" class="container">
+    <h2>Leave a Message | 代購留言區</h2>
+    <p>Fill out the form below to leave a message about your shopping plans.<br> 請填寫以下表單，分享您的代購計劃。</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScE9soVjL3UcqVTBszOe-vbP9lF71hE-hCa2csuUg_gEzkHmQ/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+<footer>
+    <p>&copy; 2024 Global Go. All Rights Reserved. | 保留所有權利。</p>
+    <p>Contact us: <a href="mailto:support@global-go.com">support@global-go.com</a></p>
+</footer>
+
+</body>
+</html>
