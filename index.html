@@ -65,7 +65,7 @@
             sections.forEach(section => section.classList.remove('active'));
             buttons.forEach(button => button.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            document.querySelector(`button[data-section="${sectionId}"]`).classList.add('active');
+            document.querySelector(`button[data-section="{sectionId}"]`).classList.add('active');
         }
 
         window.onload = () => showSection('home');
@@ -84,6 +84,7 @@
     <button data-section="post-request" onclick="showSection('post-request')">Post Request | 發布需求</button>
     <button data-section="view-requests" onclick="showSection('view-requests')">View Requests | 查看需求</button>
     <button data-section="leave-message" onclick="showSection('leave-message')">Leave a Message | 代購留言</button>
+    <button data-section="view-messages" onclick="showSection('view-messages')">View Messages | 查看留言</button>
 </nav>
 
 <div id="home" class="container active">
@@ -98,18 +99,15 @@
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxwf2fpjnpQZEoiKwwmgRNJWgeiWq79aogwMLwo0pJtTP3sg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 </div>
 
-<div id="view-requests" class="container">
-    <h2>View Submitted Requests | 查看已提交的需求</h2>
-    <p>The submitted requests will appear below:<br> 已提交的購物需求將顯示在下方。</p>
-    <div id="requests-container">
-        <p>Feature for viewing requests will be added dynamically here.</p>
-    </div>
-</div>
-
 <div id="leave-message" class="container">
     <h2>Leave a Message | 代購留言區</h2>
     <p>Fill out the form below to leave a message about your shopping plans.<br> 請填寫以下表單，分享您的代購計劃。</p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScE9soVjL3UcqVTBszOe-vbP9lF71hE-hCa2csuUg_gEzkHmQ/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScE9soVjL3UcqVTBszOe-vbP9lF71hE-hCa2csuUg_gEzkHmQ/viewform?embedded=true" width="640" height="780" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+<div id="view-messages" class="container">
+    <h2>View Submitted Messages | 查看已提交的留言</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTXgiNApv59JCBrhJnlVnUfy2slu0PRFzLgVDYX0KzXjQ5MLF52CD4Uzv2epX8fKBDYSd6raSM-jIXJ/pubhtml" width="100%" height="600" frameborder="0"></iframe>
 </div>
 
 <footer>
