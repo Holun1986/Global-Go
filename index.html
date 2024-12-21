@@ -65,7 +65,7 @@
             sections.forEach(section => section.classList.remove('active'));
             buttons.forEach(button => button.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
-            document.querySelector(`button[data-section="{sectionId}"]`).classList.add('active');
+            document.querySelector(`button[data-section="${sectionId}"]`).classList.add('active');
         }
 
         window.onload = () => showSection('home');
@@ -97,6 +97,11 @@
     <h2>Post Your Shopping Request | 發布您的購物需求</h2>
     <p>Fill out the form below to submit your shopping request.<br> 請填寫以下表單來提交您的購物需求。</p>
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxwf2fpjnpQZEoiKwwmgRNJWgeiWq79aogwMLwo0pJtTP3sg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+</div>
+
+<div id="view-requests" class="container">
+    <h2>View Submitted Requests | 查看已提交的需求</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vREQUEST_SHEET_LINK/pubhtml" width="100%" height="600" frameborder="0"></iframe>
 </div>
 
 <div id="leave-message" class="container">
